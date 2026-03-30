@@ -40,9 +40,11 @@ async def main():
         parts=[types.Part(text="What are the hobbies of the user?")],
     )
 
-    for event in runner.run(
+    answer = runner.run(
         user_id=USER_ID, session_id=SESSION_ID, new_message=input_message
-    ):
+    )
+
+    for event in answer:
         if event.is_final_response():
             if event.content and event.content.parts:
                 print(f"Final response: {event.content.parts[0].text}")
